@@ -42,25 +42,73 @@ call plug#end()
 syntax on
 
 " Basic Vim Config:
+set clipboard^=unnamed,unnamedplus
+set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+set number                      " Show line numbers
+set pastetoggle=<F2>            " Toggle paste mode with F2
+set ruler                       " Show ruler
+set showcmd                     " Show current command
+set showmatch                   " Show matching bracket/parenthesis/etc
+set showmode                    " Show current mode
+set tags=tags;                  " Find tags recursively
+set title                       " Change terminal title
+set ttyfast                     " Fast terminalo
+set lazyredraw                  " Use lazy redrawing
+set nofoldenable                " Disable folding
+set encoding=utf-8
+set backspace=indent,eol,start  " Delete over line breaks
+
 set t_Co=256
 set background=dark
 set hidden
-set number
 set relativenumber
 set mouse=a
-set shiftwidth=4
-set tabstop=4
-set noswapfile
-set hls
-set hlsearch
 set wildmenu
 set wildmode=longest:full,full
 set cursorline 
 set cursorcolumn
-set noic "to be case sensitive
+
 " Editor Config
 " "to toggle on and of, can type >  IndentLinesToggle
 let g:indentLine_char_list = [ '┊','┆','|', '¦' ]
+
+
+" Search
+set incsearch                   " Incremental search
+set hlsearch                    " Highlight matches
+set ignorecase                  " Case-insensitive search...
+set smartcase                   " ...unless search contains uppercase letter
+
+" Spell checking
+set spelllang=en_us             " English as default language
+set spell                       " Enable by default
+
+" Splits
+set splitbelow                  " Horizontal split below
+set splitright                  " Vertical split right
+
+" Scroll
+set sidescrolloff=3             " Keep at least 3 lines left/right
+set scrolloff=3                 " Keep at least 3 lines above/below
+
+" Indentation
+set smarttab                    " Better tabs
+set smartindent                 " Insert new level of indentation
+set autoindent                  " Copy indentation from previous line
+set tabstop=2                   " Columns a tab counts for
+set softtabstop=2               " Columns a tab inserts in insert mode
+set shiftwidth=2                " Columns inserted with the reindent operations
+set shiftround                  " Always indent by multiple of shiftwidth
+set expandtab                   " Always use spaces instead of tabs
+
+" Wrapping
+set nowrap                      " Don't wrap long lines
+set linebreak                   " When wrapping, only at certain characters
+set textwidth=0                 " Turn off physical line wrapping
+set wrapmargin=0                " Turn off physical line wrapping
+
+" Make completion menu behave like an IDE
+set completeopt=longest,menuone,preview
 
 " Theme Config:
 colorscheme gruvbox
@@ -114,4 +162,12 @@ nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>h :History<CR>
 noremap <F3> :Autoformat<CR> " Auto Format
 noremap <C-e> :Buffers<CR> "Open Buffers
+nnoremap <leader><space> :noh<CR>  " Clear search highlight
+" Move between open buffers
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-p> :bprev<CR>
+" Close Current Buffer
+nnoremap <leader>bd :bdelete<CR>
+" Clear search highlight
+nnoremap <leader><space> :noh<CR>
 " Key Binginds - END ##########################################################
