@@ -167,6 +167,7 @@ nnoremap <leader><space> :noh<CR>  " Clear search highlight
 " Move between open buffers
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprev<CR>
+"nnoremap <C-p> :bprev<CR> "commenting this out as im already using the same
 " Close Current Buffer
 nnoremap <leader>bd :bdelete<CR>
 " Clear search highlight
