@@ -80,8 +80,8 @@ set ignorecase                  " Case-insensitive search...
 set smartcase                   " ...unless search contains uppercase letter
 
 " Spell checking
-set spelllang=en_us             " English as default language
-set spell                       " Enable by default
+"set spelllang=en_us             " English as default language
+"set spell                       " Enable by default
 
 " Splits
 set splitbelow                  " Horizontal split below
