@@ -15,7 +15,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'                                          "NerdTree
 Plug 'Chiel92/vim-autoformat'
 Plug 'yggdroot/indentline'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors' "with this can select a word and press Ctrl N to select and C to edit multiple.
 " Auto completition based on files 
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
