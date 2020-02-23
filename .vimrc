@@ -66,7 +66,7 @@ set mouse=a
 set wildmenu
 set wildmode=longest:full,full
 set cursorline 
-set cursorcolumn
+"set cursorcolumn "show column line
 
 " Editor Config
 " "to toggle on and of, can type >  IndentLinesToggle
@@ -159,6 +159,7 @@ let NERDTreeRespectWildIgnore=1 " Nerdtree config for wildignore
 nnoremap <leader><TAB> :NERDTreeToggle<cr> "NerdTree
 nnoremap <C-p> :Files<CR> " Open file search
 nnoremap <Leader>b :Buffers<CR> 
+nnoremap <leader>p :Files<CR> " Open file search
 nnoremap <Leader>h :History<CR>
 noremap <F3> :Autoformat<CR> " Auto Format
 noremap <C-e> :Buffers<CR> "Open Buffers
