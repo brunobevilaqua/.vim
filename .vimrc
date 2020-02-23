@@ -15,6 +15,19 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'                                          "NerdTree
 Plug 'Chiel92/vim-autoformat'
 Plug 'yggdroot/indentline'
+Plug 'terryma/vim-multiple-cursors'
+" Auto completition based on files 
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+" NOTE: you need to install completion sources to get completions. Check
+" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+
 " Programmind Sutff
 Plug 'sheerun/vim-polyglot'                     " a collection of language packs for Vim.
 Plug 'ncm2/ncm2-tern', { 'do': 'npm install' }  " javascript completion (need to install node before this)
@@ -40,12 +53,11 @@ set tabstop=4
 set noswapfile
 set hls
 set hlsearch
-set ignorecase
 set wildmenu
 set wildmode=longest:full,full
 set cursorline 
 set cursorcolumn
-
+set noic "to be case sensitive
 " Editor Config
 " "to toggle on and of, can type >  IndentLinesToggle
 let g:indentLine_char_list = [ '┊','┆','|', '¦' ]
