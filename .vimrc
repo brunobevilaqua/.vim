@@ -1,22 +1,47 @@
-" Plugins - ###################################################################
-call plug#begin()
+syntax on 
+filetype off
 
-" UI Stuff / Themes
+" Plugins - ###################################################################
+call plug#begin('~/.vim/plugged')
+
+" ================  UI Stuff / Themes ==============
 Plug 'morhetz/gruvbox'
 Plug 'srcery-colors/srcery-vim'
 Plug 'vim-airline/vim-airline'        " status bar
 Plug 'vim-airline/vim-airline-themes' " status theme
 Plug 'dracula/vim', { 'as': 'dracula' }
 
-" Editor - Suff
+"This plugin causes trailing whitespace to be highlighted in red.
+"To fix the whitespace errors, call :FixWhitespace.  By default it
+"operates on the entire file.  Pass a range (or use V to select some lines)
+"to restrict the portion of the file that gets fixed.
+Plug 'bronson/vim-trailing-whitespace'
+
+" There are linewise mappings. [<Space> and ]<Space> add newlines before and after the cursor line. 
+" [e and ]e exchange the current line with the one above or below it.
+Plug 'tpope/vim-unimpaired'
+
+" ================ add pairs of anything ===========
 Plug 'jiangmiao/auto-pairs' " auto bracket
+
+" ================ search ==========================
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   " fzf finder
 Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree'                                          "NerdTree
-Plug 'Chiel92/vim-autoformat'
-Plug 'yggdroot/indentline'
+
+" ================ Nerd Tree =======================
+Plug 'scrooloose/nerdtree'
+
+" ================ show identation line ============
+Plug 'yggdroot/indentline' 
+
+" ================ Multiple cursors by pressing Ctrl n 
 Plug 'terryma/vim-multiple-cursors' "with this can select a word and press Ctrl N to select and C to edit multiple.
-" Auto completition based on files 
+
+" ================ Auto resize Split Windows when selected
+Plug 'camspiers/animate.vim'
+Plug 'camspiers/lens.vim'
+
+" ================ Auto complete based on files ====
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 " enable ncm2 for all buffers
@@ -28,12 +53,35 @@ set completeopt=noinsert,menuone,noselect
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 
-" Programmind Sutff
-Plug 'sheerun/vim-polyglot'                     " a collection of language packs for Vim.
+" ================ Programmind Sutff ===============
+Plug 'pangloss/vim-javascript'
+Plug 'othree/yajs.vim', {'for': 'javascript'}
+Plug 'othree/es.next.syntax.vim', {'for': 'javascript'}
+Plug 'pearofducks/ansible-vim'
+Plug 'HerringtonDarkholme/yats.vim'             "typescript syntax 
 Plug 'ncm2/ncm2-tern', { 'do': 'npm install' }  " javascript completion (need to install node before this)
 Plug 'w0rp/ale'                                 " lint chekcer
-Plug 'airblade/vim-gitgutter'
+Plug 'moll/vim-node'                            "Node js Pluggin
+Plug 'isRuslan/vim-es6' "Es6 Plugging
+
+" ================ CocVim Sutff ===============
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-calc', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
+
+" ================ Formatting comments =============
+Plug 'scrooloose/nerdcommenter'
+
+" ================ git plugins =====================
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter' "this pluggin shows a + in the lines that werer changed
+
 call plug#end()
 " Plugins -  END ##############################################################
 
@@ -41,10 +89,11 @@ call plug#end()
 " Programming Config:
 syntax on
 
-" Basic Vim Config:
+" ================ Basic Vim Config ================
 set clipboard^=unnamed,unnamedplus
-set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+set rulerformat=%30(%=\:b%n%y%m%r%w\ dd,%c%V\ %P%)
 set number                      " Show line numbers
+set relativenumber
 set pastetoggle=<F2>            " Toggle paste mode with F2
 set ruler                       " Show ruler
 set showcmd                     " Show current command
@@ -57,41 +106,59 @@ set lazyredraw                  " Use lazy redrawing
 set nofoldenable                " Disable folding
 set encoding=utf-8
 set backspace=indent,eol,start  " Delete over line breaks
-
 set t_Co=256
-set background=dark
 set hidden
-set relativenumber
 set mouse=a
-set wildmenu
-set wildmode=longest:full,full
+
 set cursorline 
 "set cursorcolumn "show column line
 
-" Editor Config
+" ================ Completion ======================
+set wildmenu
+set wildmode=longest:full,full
+set wildignore+=*.pyc,__pycache__,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*
+
+" ================= NERDTree config ================
+let NERDTreeRespectWildIgnore=1 " Nerdtree config for wildignore
+let NERDTreeShowHidden=1 " NerdTree show hidden files
+
+" ================ Scrolling ========================
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
+
+" ================ Editor Config ===================
 " "to toggle on and of, can type >  IndentLinesToggle
 let g:indentLine_char_list = [ '┊','┆','|', '¦' ]
 
+" ================= javascript sintax configuration:
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+augroup END
 
-" Search
+"================= Search ==========================
 set incsearch                   " Incremental search
 set hlsearch                    " Highlight matches
 set ignorecase                  " Case-insensitive search...
 set smartcase                   " ...unless search contains uppercase letter
 
-" Spell checking
+" ================= Spell checking =================
 "set spelllang=en_us             " English as default language
 "set spell                       " Enable by default
 
-" Splits
+" ================= Splits =========================
 set splitbelow                  " Horizontal split below
 set splitright                  " Vertical split right
-
-" Scroll
+ 
+" ================= scroll =========================
 set sidescrolloff=3             " Keep at least 3 lines left/right
 set scrolloff=3                 " Keep at least 3 lines above/below
 
-" Indentation
+" ================= identation =====================
 set smarttab                    " Better tabs
 set smartindent                 " Insert new level of indentation
 set autoindent                  " Copy indentation from previous line
@@ -101,19 +168,20 @@ set shiftwidth=2                " Columns inserted with the reindent operations
 set shiftround                  " Always indent by multiple of shiftwidth
 set expandtab                   " Always use spaces instead of tabs
 
-" Wrapping
+" ================= Wrapping =======================
 set nowrap                      " Don't wrap long lines
 set linebreak                   " When wrapping, only at certain characters
 set textwidth=0                 " Turn off physical line wrapping
 set wrapmargin=0                " Turn off physical line wrapping
 
-" Make completion menu behave like an IDE
+" ================= Make completion menu behave like an IDE
 set completeopt=longest,menuone,preview
 
-" Theme Config:
+" ================= Theme ==========================
 colorscheme gruvbox
+set background=dark
 
-" Status Bar Config:
+" ================= Status Bar =====================
 set laststatus=2
 
 let g:airline_powerline_fonts = 1
@@ -151,25 +219,40 @@ let g:airline_symbols.linenr = " " "font https://github.com/vim-airline/vim-airl
 let g:airline_symbols.whitespace = " "
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
-set wildignore+=*.pyc,__pycache__,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*
-let NERDTreeRespectWildIgnore=1 " Nerdtree config for wildignore
+
+" ================= Lint ===========================
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+
 " Config - END ################################################################
 
 " Key Binginds ################################################################
 nnoremap <leader><TAB> :NERDTreeToggle<cr> "NerdTree
-nnoremap <C-p> :Files<CR> " Open file search
-nnoremap <Leader>b :Buffers<CR> 
-nnoremap <leader>p :Files<CR> " Open file search
-nnoremap <Leader>h :History<CR>
-noremap <F3> :Autoformat<CR> " Auto Format
+map <C-F> :NERDTreeFind<CR>         " Open NERDTree and focus on current file
+
+map <leader>v :vertical :new<CR>   " open new vertical window
+map <leader>h :new<CR>             " open a new horizontal window
+map <leader>q :q<CR>               " it quit current vim buffer
+
+map <leader>n :tabnew<CR>          " create a new tab
+map <leader>z :tabprevious<CR>     " move to previous tab
+map <leader>x :tabnext<CR>         " move to next tab
+
+nmap <silent><leader>k :call CocAction('doHover')<CR>
+
+"autocmd CursorHold * silent call CocActionAsync('doHover')
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nnoremap <Leader>h :History<CR> "show file history 
+nmap <F6> <Plug>(ale_fix)
 noremap <C-e> :Buffers<CR> "Open Buffers
 nnoremap <leader><space> :noh<CR>  " Clear search highlight
-" Move between open buffers
-nnoremap <C-n> :bnext<CR>
-nnoremap <C-p> :bprev<CR>
-"nnoremap <C-p> :bprev<CR> "commenting this out as im already using the same
-" Close Current Buffer
-nnoremap <leader>bd :bdelete<CR>
-" Clear search highlight
-nnoremap <leader><space> :noh<CR>
+nnoremap <leader>bb :bnext<CR> " Move between open buffers
+"nnoremap <C-]> :bprev<CR> " disabling this as its causinga weird behavior... need to check later the reason
+nnoremap <leader>p :Files<CR> " Open file search
+nnoremap <leader>bd :bdelete<CR> " Close Current Buffer
+nnoremap <leader><space> :noh<CR> " Clear search highlight
 " Key Binginds - END ##########################################################
