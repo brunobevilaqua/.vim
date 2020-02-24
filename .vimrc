@@ -227,6 +227,9 @@ let g:ale_sign_warning = '⚠️'
 " Config - END ################################################################
 
 " Key Binginds ################################################################
+" Changing Leader key to ,
+let mapleader = ","
+
 nnoremap <leader><TAB> :NERDTreeToggle<cr> "NerdTree
 map <C-F> :NERDTreeFind<CR>         " Open NERDTree and focus on current file
 
