@@ -93,7 +93,7 @@ Plug 'neoclide/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-actions', {'do': 'yarn install --frozen-lockfile'} "Only supports neovim
 
 " YouCompleteMe
-Plug 'ycm-core/YouCompleteMe' " testing if its worth or not
+Plug 'ycm-core/YouCompleteMe' " testing if its worth or not"
 
 " ================ Formatting comments =============
 Plug 'scrooloose/nerdcommenter'
@@ -106,6 +106,9 @@ Plug 'airblade/vim-gitgutter' "this pluggin shows a + in the lines that werer ch
 autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 "autocmd CursorMoved * exe printf('match WordUnder /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 "highlight WordUnder ctermfg = 3
+
+" =============== Ctags Bar ========================
+Plug 'majutsushi/tagbar' " need to have ctgas installed: brew install ctags
 
 call plug#end()
 " Plugins -  END ##############################################################
@@ -131,7 +134,6 @@ set backspace=indent,eol,start  " Delete over line breaks
 set t_Co=256
 set hidden
 set mouse=a
-
 set cursorline 
 "set cursorcolumn "show column line
 
@@ -233,7 +235,7 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-let g:airline_theme='wombat'
+let g:airline_theme='atomic'
 let g:colorscheme_switcher_define_mappings = 1 " change colorscheme with F8 and SHIFT-F8
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -253,7 +255,7 @@ let g:ale_sign_warning = '⚠️'
 let mapleader = ","
 
 nnoremap <leader><TAB> :NERDTreeToggle<cr> "NerdTree
-map <C-F> :NERDTreeFind<CR>         " Open NERDTree and focus on current file
+map <C-f> :NERDTreeFind<CR>         " Open NERDTree and focus on current file
 
 map <leader>v :vertical :new<CR>   " open new vertical window
 map <leader>h :new<CR>             " open a new horizontal window
@@ -280,4 +282,5 @@ nnoremap <leader>bb :bnext<CR> " Move between open buffers
 nnoremap <leader>p :Files<CR> " Open file search
 nnoremap <leader>bd :bdelete<CR> " Close Current Buffer
 nnoremap <leader><space> :noh<CR> " Clear search highlight
+nmap <F8> :TagbarToggle<CR> " Show tags bar 
 " Key Binginds - END ##########################################################
