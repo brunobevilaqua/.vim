@@ -92,9 +92,6 @@ Plug 'neoclide/coc-calc', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-actions', {'do': 'yarn install --frozen-lockfile'} "Only supports neovim
 
-" YouCompleteMe
-Plug 'ycm-core/YouCompleteMe' " testing if its worth or not"
-
 " ================ Formatting comments =============
 Plug 'scrooloose/nerdcommenter'
 
