@@ -10,8 +10,24 @@ Plug 'srcery-colors/srcery-vim'
 Plug 'vim-airline/vim-airline'        " status bar
 Plug 'vim-airline/vim-airline-themes' " status theme
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'NLKNguyen/papercolor-theme' "this theme has light and dark background
+Plug 'jnurmine/Zenburn' "to load => :colors zenburn
+"Options for solarized theme are:
+"set background=dark and colorscheme solarized
+" or
+" set background=light and colorscheme solarized
+Plug 'altercation/vim-colors-solarized'
+Plug 'sonph/onehalf', {'rtp': 'vim/'} "config example below:
+  " syntax on
+  "set t_Co=256
+  "set cursorline
+  "colorscheme onehalflight
+  "let g:airline_theme='onehalfdark'
+  " lightline
+  " let g:lightline.colorscheme='onehalfdark'
 
-"This plugin causes trailing whitespace to be highlighted in red.
+" ================ Rendering White Spaces ==========
+" This plugin causes trailing whitespace to be highlighted in red.
 "To fix the whitespace errors, call :FixWhitespace.  By default it
 "operates on the entire file.  Pass a range (or use V to select some lines)
 "to restrict the portion of the file that gets fixed.
@@ -74,6 +90,7 @@ Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-calc', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-actions', {'do': 'yarn install --frozen-lockfile'} "Only supports neovim
 
 " ================ Formatting comments =============
 Plug 'scrooloose/nerdcommenter'
@@ -81,6 +98,11 @@ Plug 'scrooloose/nerdcommenter'
 " ================ git plugins =====================
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter' "this pluggin shows a + in the lines that werer changed
+
+" ================ Auto highlight ==================
+autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+"autocmd CursorMoved * exe printf('match WordUnder /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+"highlight WordUnder ctermfg = 3
 
 call plug#end()
 " Plugins -  END ##############################################################
@@ -136,8 +158,8 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
 augroup javascript_folding
-    au!
-    au FileType javascript setlocal foldmethod=syntax
+  au!
+  au FileType javascript setlocal foldmethod=syntax
 augroup END
 
 "================= Search ==========================
@@ -153,7 +175,7 @@ set smartcase                   " ...unless search contains uppercase letter
 " ================= Splits =========================
 set splitbelow                  " Horizontal split below
 set splitright                  " Vertical split right
- 
+
 " ================= scroll =========================
 set sidescrolloff=3             " Keep at least 3 lines left/right
 set scrolloff=3                 " Keep at least 3 lines above/below
@@ -186,7 +208,7 @@ set laststatus=2
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 
 " unicode symbols
@@ -211,7 +233,7 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-let g:airline_theme='gruvbox'
+let g:airline_theme='wombat'
 let g:colorscheme_switcher_define_mappings = 1 " change colorscheme with F8 and SHIFT-F8
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -224,7 +246,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
 
-" Config - END ################################################################
+"" Config - END ################################################################
 
 " Key Binginds ################################################################
 " Changing Leader key to ,
