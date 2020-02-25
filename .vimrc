@@ -245,7 +245,12 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
 
-"" Config - END ################################################################
+" ================ Auto resize Split Windows when selected
+let g:fzf_layout = {
+ \ 'window': 'new | wincmd J | resize 1 | call animate#window_percent_height(0.5)'
+\ } 
+
+" Config - END ################################################################
 
 " Key Binginds ################################################################
 " Changing Leader key to ,
@@ -280,4 +285,10 @@ nnoremap <leader>p :Files<CR> " Open file search
 nnoremap <leader>bd :bdelete<CR> " Close Current Buffer
 nnoremap <leader><space> :noh<CR> " Clear search highlight
 nmap <F8> :TagbarToggle<CR> " Show tags bar 
+
+" ================ Auto resize Split Windows when selected
+nnoremap <silent> <Up>    :call animate#window_delta_height(10)<CR>
+nnoremap <silent> <Down>  :call animate#window_delta_height(-10)<CR>
+nnoremap <silent> <Left>  :call animate#window_delta_width(10)<CR>
+nnoremap <silent> <Right> :call animate#window_delta_width(-10)<CR>
 " Key Binginds - END ##########################################################
