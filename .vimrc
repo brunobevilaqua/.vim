@@ -103,7 +103,6 @@ Plug 'airblade/vim-gitgutter' "this pluggin shows a + in the lines that werer ch
 autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 "autocmd CursorMoved * exe printf('match WordUnder /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 "highlight WordUnder ctermfg = 3
-
 " =============== Ctags Bar ========================
 Plug 'majutsushi/tagbar' " need to have ctgas installed: brew install ctags
 
@@ -280,7 +279,7 @@ noremap <C-e> :Buffers<CR>
 nnoremap <leader><space> :noh<CR>  " Clear search highlight
 nnoremap <leader>bb :bnext<CR> " Move between open buffers
 "nnoremap <C-]> :bprev<CR> " disabling this as its causinga weird behavior... need to check later the reason
-nnoremap <leader>p :Files<CR> 
+nnoremap <leader>p :Files<CR>
 nnoremap <leader>bd :bdelete<CR> " Close Current Buffer
 nnoremap <leader><space> :noh<CR> " Clear search highlight
 nmap <F8> :TagbarToggle<CR> " Show tags bar 
