@@ -275,13 +275,12 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-nnoremap <Leader>h :History<CR> "show file history 
 nmap <F6> <Plug>(ale_fix)
-noremap <C-e> :Buffers<CR> "Open Buffers
+noremap <C-e> :Buffers<CR> 
 nnoremap <leader><space> :noh<CR>  " Clear search highlight
 nnoremap <leader>bb :bnext<CR> " Move between open buffers
 "nnoremap <C-]> :bprev<CR> " disabling this as its causinga weird behavior... need to check later the reason
-nnoremap <leader>p :Files<CR> " Open file search
+nnoremap <leader>p :Files<CR> 
 nnoremap <leader>bd :bdelete<CR> " Close Current Buffer
 nnoremap <leader><space> :noh<CR> " Clear search highlight
 nmap <F8> :TagbarToggle<CR> " Show tags bar 
