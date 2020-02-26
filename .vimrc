@@ -1,30 +1,17 @@
 syntax on 
 filetype off
+set noswapfile
 
 " Plugins - ###################################################################
 call plug#begin('~/.vim/plugged')
 
 " ================  UI Stuff / Themes ==============
 Plug 'morhetz/gruvbox'
-Plug 'srcery-colors/srcery-vim'
 Plug 'vim-airline/vim-airline'        " status bar
 Plug 'vim-airline/vim-airline-themes' " status theme
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'NLKNguyen/papercolor-theme' "this theme has light and dark background
-Plug 'jnurmine/Zenburn' "to load => :colors zenburn
-"Options for solarized theme are:
-"set background=dark and colorscheme solarized
-" or
-" set background=light and colorscheme solarized
 Plug 'altercation/vim-colors-solarized'
-Plug 'sonph/onehalf', {'rtp': 'vim/'} "config example below:
-  " syntax on
-  "set t_Co=256
-  "set cursorline
-  "colorscheme onehalflight
-  "let g:airline_theme='onehalfdark'
-  " lightline
-  " let g:lightline.colorscheme='onehalfdark'
 
 " ================ Rendering White Spaces ==========
 " This plugin causes trailing whitespace to be highlighted in red.
@@ -199,6 +186,11 @@ set completeopt=longest,menuone,preview
 
 " ================= Theme ==========================
 colorscheme gruvbox
+let g:gruvbox_italicize_strings=0                                                                                                                                                        
+let g:gruvbox_improved_strings=1 
+" contras values: soft, medium, hard. default is medium.
+let g:gruvbox_contrast_dark='soft'
+let g:gruvbox_contrast_light='soft'
 set background=dark
 
 " ================= Status Bar =====================
@@ -258,8 +250,8 @@ let mapleader = ","
 map <leader><TAB> :NERDTreeToggle<CR>
 map <C-f> :NERDTreeFind<CR>         " Open NERDTree and focus on current file
 
-map <leader>v :vertical :new<CR>   " open new vertical window
-map <leader>h :new<CR>             " open a new horizontal window
+map <leader>v :vs<CR>   " open new vertical window
+map <leader>h :sp<CR>             " open a new horizontal window
 map <leader>q :q<CR>               " it quit current vim buffer
 
 map <leader>n :tabnew<CR>          " create a new tab
@@ -292,4 +284,5 @@ nnoremap <silent> <Right> :call animate#window_delta_width(-10)<CR>
 
 " =============== Toggle Identation ================
 nnoremap <F9> :IndentLinesToggle<CR>
+
 " Key Binginds - END ##########################################################
