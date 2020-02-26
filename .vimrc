@@ -255,7 +255,7 @@ let g:fzf_layout = {
 " Changing Leader key to ,
 let mapleader = ","
 
-nnoremap <leader><TAB> :NERDTreeToggle<cr> "NerdTree
+map <leader><TAB> :NERDTreeToggle<CR>
 map <C-f> :NERDTreeFind<CR>         " Open NERDTree and focus on current file
 
 map <leader>v :vertical :new<CR>   " open new vertical window
