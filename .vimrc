@@ -99,15 +99,14 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter' "this pluggin shows a + in the lines that werer changed
 
-" ================ Auto highlight ==================
-autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
-"autocmd CursorMoved * exe printf('match WordUnder /\V\<%s\>/', escape(expand('<cword>'), '/\'))
-"highlight WordUnder ctermfg = 3
 " =============== Ctags Bar ========================
 Plug 'majutsushi/tagbar' " need to have ctgas installed: brew install ctags
 
 " =============== Dim buffer windows ===============
 Plug 'blueyed/vim-diminactive'
+
+" =============== Autohighligh word under cursor ===
+Plug 'RRethy/vim-illuminate'
 
 call plug#end()
 " Plugins -  END ##############################################################
@@ -133,7 +132,7 @@ set backspace=indent,eol,start  " Delete over line breaks
 set t_Co=256
 set hidden
 set mouse=a
-set cursorline 
+set nocursorline 
 "set cursorcolumn "show column line
 
 " ================ Completion ======================
@@ -242,7 +241,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 
 " ================= Lint ===========================
-let g:ale_sign_error = '❌'
+let g:ale_sign_error = '💀'
 let g:ale_sign_warning = '⚠️'
 
 " ================ Auto resize Split Windows when selected
