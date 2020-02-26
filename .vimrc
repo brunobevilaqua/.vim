@@ -106,6 +106,9 @@ autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<c
 " =============== Ctags Bar ========================
 Plug 'majutsushi/tagbar' " need to have ctgas installed: brew install ctags
 
+" =============== Dim buffer windows ===============
+Plug 'blueyed/vim-diminactive'
+
 call plug#end()
 " Plugins -  END ##############################################################
 
@@ -149,7 +152,6 @@ set sidescroll=1
 
 " ================ Editor Config ===================
 " "to toggle on and of, can type >  IndentLinesToggle
-let g:indentLine_char_list = [ '┊','┆','|', '¦' ]
 
 " ================= javascript sintax configuration:
 let g:javascript_plugin_jsdoc = 1
@@ -190,7 +192,6 @@ set expandtab                   " Always use spaces instead of tabs
 
 " ================= Wrapping =======================
 set nowrap                      " Don't wrap long lines
-set linebreak                   " When wrapping, only at certain characters
 set textwidth=0                 " Turn off physical line wrapping
 set wrapmargin=0                " Turn off physical line wrapping
 
@@ -289,4 +290,7 @@ nnoremap <silent> <Up>    :call animate#window_delta_height(10)<CR>
 nnoremap <silent> <Down>  :call animate#window_delta_height(-10)<CR>
 nnoremap <silent> <Left>  :call animate#window_delta_width(10)<CR>
 nnoremap <silent> <Right> :call animate#window_delta_width(-10)<CR>
+
+" =============== Toggle Identation ================
+nnoremap <F9> :IndentLinesToggle<CR>
 " Key Binginds - END ##########################################################
