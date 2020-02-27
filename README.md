@@ -8,13 +8,14 @@
 ```
 <br/>
 
-2) Clone repository to into your user root diretory.
+2) Clone repository into your user root diretory.  
+<br/>
 
-3) Create ".vimrc" file in user root diretory and with following content:  
+3) Create ".vimrc" file in user root diretory and with following content:     
 `source ~/.vim/.vimrc`   
 <br/>
 
-4) Open a terminal window and type:
+4) Open a terminal window and type:  
 `vim`  
 <br/>
 
@@ -25,11 +26,11 @@
 <h2> Shortcuts </h2>
 *Important: leader key is "," 
 
-- Trasition between Splits:
+- Trasition between Splits:  
 `<TAB>`   
   <br/>
   
--Toggle(on/off) NerdTree(file explorer):  
+- Toggle(on/off) NerdTree(file explorer):    
 `<leader> <TAB>`  
 <br/>
   
