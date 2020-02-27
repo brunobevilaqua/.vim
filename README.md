@@ -6,43 +6,59 @@
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
+<br/>
 
 2) Clone repository to into your user root diretory.
 
-3) Create ".vimrc" file in user root diretory and with following content:
-`source ~/.vim/.vimrc`
+3) Create ".vimrc" file in user root diretory and with following content:  
+`source ~/.vim/.vimrc`   
+<br/>
 
-4) Open termina and Vim:
-`vim`
+4) Open a terminal window and type:
+`vim`  
+<br/>
 
-5) Download plugins, enter ex mode (:), then type > `PlugInstall`
+5) type:   
+`PlugInstall`  
+<br/>
 
-See below a couple of shortcuts, keep in mind that I configured <leader> key as ",":
+<h2> Shortcuts </h2>
+*Important: leader key is "," 
+
 - Trasition between Splits:
-`<TAB>`
+`<TAB>`   
+  <br/>
   
--Toggle(on/off) NerdTree(file explorer): 
-`<leader> <TAB>`
+-Toggle(on/off) NerdTree(file explorer):  
+`<leader> <TAB>`  
+<br/>
+  
+- Open new Vertical Split:   
+`<leader> v`  
+<br/>
 
-- Open new Vertical Split: 
-`<leader> v`
+- Open new horizontal Split:   
+`<leader> h`   
+<br/>
+  
+- Open tagbar:   
+`F8`   
+<br/>
 
-- Open new horizontal Split: 
-`<leader> h`
+- Go to Next Open Buffer(file):    
+`<leader> bb`   
+<br/>
 
-- Open tagbar: 
-`F8`
+- Close current Buffer:  
+`<leader> bd`   
+<br/>
 
-- Go to Next Open Buffer(file): 
-`<leader> bb`
+- Resize Splits by using Arrow keys  
+<br/>
 
-- Close current Buffer: 
-`<leader> bd`
-
-- Resize Splits by using Arrow keys
-
-- Open Fzf Search (will search in current folder): 
-`<leader> e`
+- Open Fzf Search (will search in current folder):   
+`<leader> e`   
+<br/>
 
 If any issues happend when Plug tries to download coc-vim dependencies, then download each one manually:
 ```
