@@ -245,7 +245,7 @@ let g:fzf_layout = {
 
 " Key Binginds ################################################################
 " Changing Leader key to ,
-let mapleader = ","
+let mapleader = "\<Space>"
 
 map <leader><TAB> :NERDTreeToggle<CR>
 map <C-f> :NERDTreeFind<CR>         " Open NERDTree and focus on current file
