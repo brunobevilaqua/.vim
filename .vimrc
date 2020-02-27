@@ -285,4 +285,7 @@ nnoremap <silent> <Right> :call animate#window_delta_width(-10)<CR>
 " =============== Toggle Identation ================
 nnoremap <F9> :IndentLinesToggle<CR>
 
-" Key Binginds - END ##########################################################
+" =============== Swith Splits with Tab ============
+map <tab> <c-w><c-w>
+" Key Binginds - END ########################################################## 
+       
