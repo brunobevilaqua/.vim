@@ -15,6 +15,7 @@
 5) Download plugins, enter ex mode (:), then type > PlugInstall
 
 See below a couple of shortcuts, keep in mind that I configured <leader> key as ",":
+- Press TAB to transition between Splits
 - Toggle(on/off) NerdTree(file explorer): <leader> TAB
 - Open new Vertical Split: <leader> v
 - Open new horizontal Split: <leader> h
