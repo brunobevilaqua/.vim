@@ -27,7 +27,7 @@
    <br/>
 
 <h2> Shortcuts </h2>
-*Important: leader key is  `<Space>`
+*<b>Important:</b> leader key is  `<Space>`
 
 - Trasition between Splits:  
   `<TAB>`  
@@ -61,6 +61,21 @@
   `<leader> e`  
   <br/>
 
+<b>IMPORTANT</b>:<br/>
+Run the terminal using a Patched font, otherwise you will see a "?" in nerdtree, file name and airline bar. <br/>
+Two easy ways to install are:<br/>
+1- First Option for MacOs, install thru homebrew: <br/>
+```
+brew tap homebrew/cask-fonts
+brew cask install font-hack-nerd-fon
+```
+<br/>
+2- Second option: <br/>
+- Run PlugInstall <br/>
+- Go to ryanoasis/vim-devicons Plugin folder <br/>
+- run `install.sh` script inside ryanoasis/vim-devicons <br/>
+For more options check: https://github.com/ryanoasis/nerd-fonts#font-installation
+<br/>
 If any issues happend when Plug tries to download coc-vim dependencies, then download each one manually:
 
 ```
