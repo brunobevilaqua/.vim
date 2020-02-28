@@ -12,13 +12,9 @@ Plug 'vim-airline/vim-airline-themes' " status theme
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'NLKNguyen/papercolor-theme' "this theme has light and dark background
 Plug 'altercation/vim-colors-solarized'
-
-" ================ Rendering White Spaces ==========
-" This plugin causes trailing whitespace to be highlighted in red.
-"To fix the whitespace errors, call :FixWhitespace.  By default it
-"operates on the entire file.  Pass a range (or use V to select some lines)
-"to restrict the portion of the file that gets fixed.
-Plug 'bronson/vim-trailing-whitespace'
+Plug 'vim-scripts/summerfruit256.vim'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'joshdick/onedark.vim'
 
 " There are linewise mappings. [<Space> and ]<Space> add newlines before and after the cursor line. 
 " [e and ]e exchange the current line with the one above or below it.
@@ -33,6 +29,12 @@ Plug 'junegunn/fzf.vim'
 
 " ================ Nerd Tree =======================
 Plug 'scrooloose/nerdtree'
+
+" Filetype icons support (requires patched font) "install nerdfonts!!!
+" Install thru homebrew as below, or run install.sh inside of ryanoasis/vim-devicons folder!
+" brew tap homebrew/cask-fonts
+" brew cask install font-hack-nerd-fon
+Plug 'ryanoasis/vim-devicons'
 
 " ================ show identation line ============
 Plug 'yggdroot/indentline' 
@@ -56,28 +58,24 @@ set completeopt=noinsert,menuone,noselect
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 
-" ================ Programmind Sutff ===============
-Plug 'pangloss/vim-javascript'
+" ================ Programming Sutff ===============
+Plug 'sheerun/vim-polyglot'  "A collection of language packs for Vim.
 Plug 'othree/yajs.vim', {'for': 'javascript'}
 Plug 'othree/es.next.syntax.vim', {'for': 'javascript'}
 Plug 'pearofducks/ansible-vim'
 Plug 'HerringtonDarkholme/yats.vim'             "typescript syntax 
 Plug 'ncm2/ncm2-tern', { 'do': 'npm install' }  " javascript completion (need to install node before this)
-Plug 'w0rp/ale'                                 " lint chekcer
+Plug 'dense-analysis/ale'                       " lint chekcer
 Plug 'moll/vim-node'                            "Node js Pluggin
 Plug 'isRuslan/vim-es6' "Es6 Plugging
 
+" JavaScript
+Plug 'pangloss/vim-javascript' " JavaScript Syntax
+Plug 'othree/javascript-libraries-syntax.vim' " Syntax for some JS libraries
+
 " ================ CocVim Sutff ===============
+" Use release branch (Recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-calc', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-actions', {'do': 'yarn install --frozen-lockfile'} "Only supports neovim
 
 " ================ Formatting comments =============
 Plug 'scrooloose/nerdcommenter'
@@ -100,6 +98,8 @@ call plug#end()
 
 " Config - START ##############################################################
 " ================ Basic Vim Config ================
+" faster scroll when syntax on
+set lazyredraw
 set clipboard^=unnamed,unnamedplus
 set rulerformat=%30(%=\:b%n%y%m%r%w\ dd,%c%V\ %P%)
 set number                      " Show line numbers
@@ -153,6 +153,7 @@ set incsearch                   " Incremental search
 set hlsearch                    " Highlight matches
 set ignorecase                  " Case-insensitive search...
 set smartcase                   " ...unless search contains uppercase letter
+set incsearch
 
 " ================= Spell checking =================
 "set spelllang=en_us             " English as default language
@@ -176,6 +177,9 @@ set shiftwidth=2                " Columns inserted with the reindent operations
 set shiftround                  " Always indent by multiple of shiftwidth
 set expandtab                   " Always use spaces instead of tabs
 
+let g:indentLine_char = '┊'
+"let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+
 " ================= Wrapping =======================
 set nowrap                      " Don't wrap long lines
 set textwidth=0                 " Turn off physical line wrapping
@@ -188,9 +192,9 @@ set completeopt=longest,menuone,preview
 colorscheme gruvbox
 let g:gruvbox_italicize_strings=0                                                                                                                                                        
 let g:gruvbox_improved_strings=1 
-" contras values: soft, medium, hard. default is medium.
-let g:gruvbox_contrast_dark='soft'
-let g:gruvbox_contrast_light='soft'
+" contrast values: soft, medium, hard. default is medium.
+let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_contrast_light='medium'
 set background=dark
 
 " ================= Status Bar =====================
@@ -230,11 +234,16 @@ let g:airline_powerline_fonts = 1
 let g:airline_symbols.linenr = " " "font https://github.com/vim-airline/vim-airline/issues/1397
 let g:airline_symbols.whitespace = " "
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 " ================= Lint ===========================
-let g:ale_sign_error = '💀'
-let g:ale_sign_warning = '⚠️'
+let g:ale_fixers = {
+ \ 'javascript': ['eslint']
+ \ }
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 
 " ================ Auto resize Split Windows when selected
 let g:fzf_layout = {
