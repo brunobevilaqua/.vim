@@ -1,24 +1,22 @@
-syntax on 
-filetype off
-set noswapfile
-
 " Plugins - ###################################################################
 call plug#begin('~/.vim/plugged')
 
 " ================  UI Stuff / Themes ==============
+" there is a gruvbox configuration in this file, so when deleting make sure to delete both places!
 Plug 'morhetz/gruvbox'
-Plug 'vim-airline/vim-airline'        " status bar
-Plug 'vim-airline/vim-airline-themes' " status theme
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'NLKNguyen/papercolor-theme' "this theme has light and dark background
-Plug 'altercation/vim-colors-solarized'
-Plug 'vim-scripts/summerfruit256.vim'
-Plug 'NLKNguyen/papercolor-theme'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'joshdick/onedark.vim'
 
-" There are linewise mappings. [<Space> and ]<Space> add newlines before and after the cursor line. 
-" [e and ]e exchange the current line with the one above or below it.
-Plug 'tpope/vim-unimpaired'
+Plug 'NLKNguyen/papercolor-theme'
+
+"Monochrome themes:
+Plug 'fxn/vim-monochrome'
+
+Plug 'Lokaltog/vim-monotone'
+
+" this them has also a configuration in this file, so when removing, make sure to delete both places!
+Plug 'arzg/vim-colors-xcode'
 
 " ================ add pairs of anything ===========
 Plug 'jiangmiao/auto-pairs' " auto bracket
@@ -46,32 +44,10 @@ Plug 'terryma/vim-multiple-cursors' "with this can select a word and press Ctrl 
 Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
 
-" ================ Auto complete based on files ====
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-" enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
-" IMPORTANT: :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
-" NOTE: you need to install completion sources to get completions. Check
-" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-
 " ================ Programming Sutff ===============
 Plug 'sheerun/vim-polyglot'  "A collection of language packs for Vim.
-Plug 'othree/yajs.vim', {'for': 'javascript'}
-Plug 'othree/es.next.syntax.vim', {'for': 'javascript'}
-Plug 'pearofducks/ansible-vim'
-Plug 'HerringtonDarkholme/yats.vim'             "typescript syntax 
-Plug 'ncm2/ncm2-tern', { 'do': 'npm install' }  " javascript completion (need to install node before this)
 Plug 'dense-analysis/ale'                       " lint chekcer
 Plug 'moll/vim-node'                            "Node js Pluggin
-Plug 'isRuslan/vim-es6' "Es6 Plugging
-
-" JavaScript
-Plug 'pangloss/vim-javascript' " JavaScript Syntax
-Plug 'othree/javascript-libraries-syntax.vim' " Syntax for some JS libraries
 
 " ================ CocVim Sutff ===============
 " Use release branch (Recommend)
@@ -98,6 +74,12 @@ call plug#end()
 
 " Config - START ##############################################################
 " ================ Basic Vim Config ================
+" Setting ctags file! 
+set tags=tags;/
+
+filetype off
+set noswapfile
+
 " faster scroll when syntax on
 set lazyredraw
 set clipboard^=unnamed,unnamedplus
@@ -116,13 +98,15 @@ set lazyredraw                  " Use lazy redrawing
 set nofoldenable                " Disable folding
 set encoding=utf-8
 set backspace=indent,eol,start  " Delete over line breaks
-set t_Co=256
 set hidden
 set mouse=a
 set nocursorline 
 "set cursorcolumn "show column line
 
 " ================ Completion ======================
+" vim was very slow when showing for autocomplete options, so i found this on
+" internet and seems to resolve the issue!
+set foldmethod=manual
 set wildmenu
 set wildmode=longest:full,full
 set wildignore+=*.pyc,__pycache__,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*
@@ -132,8 +116,8 @@ let NERDTreeRespectWildIgnore=1 " Nerdtree config for wildignore
 let NERDTreeShowHidden=1 " NerdTree show hidden files
 
 " ================ Scrolling ========================
-set scrolloff=8         "Start scrolling when we're 8 lines away from margins
-set sidescrolloff=15
+"set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+"set sidescrolloff=15
 set sidescroll=1
 
 " ================ Editor Config ===================
@@ -163,10 +147,6 @@ set incsearch
 set splitbelow                  " Horizontal split below
 set splitright                  " Vertical split right
 
-" ================= scroll =========================
-set sidescrolloff=3             " Keep at least 3 lines left/right
-set scrolloff=3                 " Keep at least 3 lines above/below
-
 " ================= identation =====================
 set smarttab                    " Better tabs
 set smartindent                 " Insert new level of indentation
@@ -177,6 +157,7 @@ set shiftwidth=2                " Columns inserted with the reindent operations
 set shiftround                  " Always indent by multiple of shiftwidth
 set expandtab                   " Always use spaces instead of tabs
 
+" below options are related to yggdroot/indentline  plugin
 let g:indentLine_char = '┊'
 "let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
@@ -189,14 +170,35 @@ set wrapmargin=0                " Turn off physical line wrapping
 set completeopt=longest,menuone,preview
 
 " ================= Theme ==========================
-colorscheme gruvbox
-let g:gruvbox_italicize_strings=0                                                                                                                                                        
-let g:gruvbox_improved_strings=1 
-" contrast values: soft, medium, hard. default is medium.
-let g:gruvbox_contrast_dark='medium'
-let g:gruvbox_contrast_light='medium'
-set background=dark
+  syntax on 
+  set t_Co=256
 
+  colorscheme xcodedark 
+  set background=dark
+
+  "settings for vim-monochrome
+  let g:monochrome_italic_comments = 1
+
+  " Settings for Gruvbox
+    let g:gruvbox_italicize_strings=0                                                                                                                                                        
+    let g:gruvbox_improved_strings=1 
+    " contrast values: soft, medium, hard. default is medium.
+    let g:gruvbox_contrast_dark='medium'
+    let g:gruvbox_contrast_light='medium'
+
+  "Setting for vim-colors-xcode
+    let g:signify_sign_add    = '┃'
+    let g:signify_sign_change = '┃'
+    let g:signify_sign_delete = '•'
+    let g:signify_sign_show_count = 0 " Don’t show the number of deleted lines.
+    " Update Git signs every time the text is changed
+    autocmd User SignifySetup
+            \ execute 'autocmd! signify' |
+            \ autocmd signify TextChanged,TextChangedI * call sy#start()
+    let g:xcodedark_green_comments  = 0
+    let g:xcodedark_emph_types =  0
+    let g:xcodedark_emph_funcs = 1
+    let g:xcodedark_emph_idents = 0
 " ================= Status Bar =====================
 set laststatus=2
 
@@ -242,6 +244,7 @@ let g:ale_fixers = {
  \ }
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
+let g:ale_set_highlights = 1
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 
@@ -259,13 +262,13 @@ let mapleader = "\<Space>"
 map <leader><TAB> :NERDTreeToggle<CR>
 map <C-f> :NERDTreeFind<CR>         " Open NERDTree and focus on current file
 
-map <leader>v :vs<CR>   " open new vertical window
+map <leader>v :vs<CR>             " open new vertical window
 map <leader>h :sp<CR>             " open a new horizontal window
-map <leader>q :q<CR>               " it quit current vim buffer
+map <leader>q :q<CR>              " it quit current vim buffer
 
-map <leader>n :tabnew<CR>          " create a new tab
-map <leader>z :tabprevious<CR>     " move to previous tab
-map <leader>x :tabnext<CR>         " move to next tab
+map <leader>n :tabnew<CR>         " create a new tab
+map <leader>z :tabprevious<CR>    " move to previous tab
+map <leader>x :tabnext<CR>        " move to next tab
 
 nmap <silent><leader>k :call CocAction('doHover')<CR>
 
@@ -296,5 +299,12 @@ nnoremap <F9> :IndentLinesToggle<CR>
 
 " =============== Swith Splits with Tab ============
 map <tab> <c-w><c-w>
+
+" =============== moll/vim-node ====================
+" autocmd User Node
+  \ if &filetype == "javascript" |
+  \   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
+  \   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
+  \ endif
+
 " Key Binginds - END ########################################################## 
-       
