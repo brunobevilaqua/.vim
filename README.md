@@ -61,6 +61,8 @@
   `<leader> e`  
   <br/>
 
+<hr>
+
 <b>IMPORTANT</b>:<br/>
 Run the terminal using a Patched font, otherwise you will see a "?" in nerdtree, file name and airline bar. <br/>
 Two easy ways to install are:<br/>
@@ -91,3 +93,10 @@ If any issues happend when Plug tries to download coc-vim dependencies, then dow
 :CocInstall coc-json
 :CocInstall coc-xml
 ```
+<hr>
+
+<p> Usefull links for customizing terminal: </p>
+<ul>
+  <li><code>https://gist.github.com/kevin-smets/8568070</code></li>
+  <li><code>https://github.com/romkatv/powerlevel10k</code></li>
+</ul>
